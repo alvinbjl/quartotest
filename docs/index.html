@@ -8,7 +8,7 @@
 
 <meta name="author" content="ABJL">
 
-<title>Title</title>
+<title>Spatial Analysis on School</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -69,18 +89,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#sec-lit-rev" id="toc-sec-lit-rev" class="nav-link" data-scroll-target="#sec-lit-rev"><span class="header-section-number">2</span> Literature Review</a></li>
+  <li><a href="#sec-study-area" id="toc-sec-study-area" class="nav-link" data-scroll-target="#sec-study-area"><span class="header-section-number">3</span> Study Area and Data</a>
+  <ul class="collapse">
+  <li><a href="#subsec-study-area" id="toc-subsec-study-area" class="nav-link" data-scroll-target="#subsec-study-area"><span class="header-section-number">3.1</span> Description of Study Area</a></li>
+  <li><a href="#subsec-data-collection" id="toc-subsec-data-collection" class="nav-link" data-scroll-target="#subsec-data-collection"><span class="header-section-number">3.2</span> Data Collection</a></li>
+  <li><a href="#subsec-pda" id="toc-subsec-pda" class="nav-link" data-scroll-target="#subsec-pda"><span class="header-section-number">3.3</span> Preliminary Data Analysis</a></li>
+  </ul></li>
+  <li><a href="#sec-methods" id="toc-sec-methods" class="nav-link" data-scroll-target="#sec-methods"><span class="header-section-number">4</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#subsec-GISA" id="toc-subsec-GISA" class="nav-link" data-scroll-target="#subsec-GISA"><span class="header-section-number">4.1</span> Global spatial autocorrelation: Global Moran’s I</a></li>
+  <li><a href="#subsec-LISA" id="toc-subsec-LISA" class="nav-link" data-scroll-target="#subsec-LISA"><span class="header-section-number">4.2</span> Local spatial autocorrelation (LISA): Local Getis-Ord</a></li>
+  </ul></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">5</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#are-the-schools-clustered" id="toc-are-the-schools-clustered" class="nav-link" data-scroll-target="#are-the-schools-clustered"><span class="header-section-number">5.1</span> Are the schools clustered?</a></li>
+  <li><a href="#locations-of-school-clusters" id="toc-locations-of-school-clusters" class="nav-link" data-scroll-target="#locations-of-school-clusters"><span class="header-section-number">5.2</span> Locations of School Clusters</a></li>
+  <li><a href="#comparison-to-distribution-of-population" id="toc-comparison-to-distribution-of-population" class="nav-link" data-scroll-target="#comparison-to-distribution-of-population"><span class="header-section-number">5.3</span> Comparison to Distribution of Population</a></li>
+  </ul></li>
+  <li><a href="#sec-conclusions" id="toc-sec-conclusions" class="nav-link" data-scroll-target="#sec-conclusions"><span class="header-section-number">6</span> Conclusions</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">7</span> Acknowledgements</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Title</h1>
+<h1 class="title">Spatial Analysis on School</h1>
 </div>
 
 
@@ -103,18 +180,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="sec-intro" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>Education is the cornerstone of social and economic development, recognized globally for its transformative impact. The importance of education is underscored by Sustainable Development Goal 4, which advocates for inclusive and equitable quality education for all <span class="citation" data-cites="UNGA2015transform">(<a href="#ref-UNGA2015transform" role="doc-biblioref">(UNGA) 2015</a>)</span>. Similarly, Brunei Darussalam’s national vision, Wawasan Brunei 2035, prioritizes education as a fundamental driver of its development goals <span class="citation" data-cites="GovernmentBruneiNDwawasan">(<a href="#ref-GovernmentBruneiNDwawasan" role="doc-biblioref">Brunei Darussalam 2020</a>)</span>. One critical factor in effective education is accessibility, which has spurred interest in understanding the spatial distribution of educational facilities.</p>
+<p>This study employs spatial statistical methods, including Global Moran’s I and Local Getis-Ord <span class="math inline">\(G_i^*\)</span>, to analyze the spatial autocorrelation of schools across the country. It also evaluates whether schools are strategically located to serve the population effectively. Specifically, the study addresses three key research questions:</p>
+<ol type="1">
+<li>Are schools in Brunei Darussalam spatially clustered or dispersed?</li>
+<li>If clustered, where are the clusters concentrated?</li>
+<li>Do school clusters align with areas of high population?</li>
+</ol>
+<p>The motivation behind this study is inspired by Tobler’s First Law of Geography, which states that “everything is related to everything else, but near things are more related than distant things” <span class="citation" data-cites="tobler1970computer">(<a href="#ref-tobler1970computer" role="doc-biblioref">Tobler 1970</a>)</span>. The first two research questions examine the spatial correlation of school locations, while the third provides a practical example of how these results can inform analyses in social sciences and other fields.</p>
+<p>Importantly, this study does not assess the quality of education, nor does it aim to address broader social science questions. Instead, the primary goal is to offer essential baseline data on the spatial distribution of schools, serving as a foundation for future research into educational equity and outcomes in Brunei, as well as the relationship between geography and education.</p>
+<p>The paper is structured as follows: <a href="#sec-lit-rev" class="quarto-xref">Section&nbsp;2</a> reviews relevant literature, establishing the context and methodological framework. <a href="#sec-study-area" class="quarto-xref">Section&nbsp;3</a> introduces the study area and dataset. <a href="#sec-methods" class="quarto-xref">Section&nbsp;4</a> outlines the methodologies, while <a href="#sec-results" class="quarto-xref">Section&nbsp;5</a> presents the results, identifying key patterns and trends. Finally, <a href="#sec-conclusions" class="quarto-xref">Section&nbsp;6</a> concludes the paper, summarizing the findings, discussing implications, and proposing directions for future research.</p>
+</section>
+<section id="sec-lit-rev" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Literature Review</h1>
+<p>Extensive studies have explored the development and general aspects of education in Brunei <span class="citation" data-cites="ebil2023overview">Ebil and Shahrill (<a href="#ref-ebil2023overview" role="doc-biblioref">2023</a>)</span> <span class="citation" data-cites="abdul2021development">Abdul Latif, Matzin, and Escoto-Kemp (<a href="#ref-abdul2021development" role="doc-biblioref">2021</a>)</span> <span class="citation" data-cites="salbrina2024education">Salbrina, Deterding, and Nur Raihan (<a href="#ref-salbrina2024education" role="doc-biblioref">2024</a>)</span> <span class="citation" data-cites="mohamad2018towards">Mohamad et al. (<a href="#ref-mohamad2018towards" role="doc-biblioref">2018</a>)</span>. However, research utilizing quantitative or spatial methodologies to assess educational effectiveness remains limited. Notably, no existing work has provided a comprehensive spatial analysis of educational accessibility and its alignment with population needs. This paper seeks to address this research gap.</p>
+<p>Spatial autocorrelation, the measurement of similarity between spatially distributed variables, has evolved significantly since its theoretical origins in the 19th century. Early ideas, such as Ravenstein’s exploration of distance effects on spatial phenomena, laid the groundwork for modern spatial analysis <span class="citation" data-cites="getis2008history">Getis (<a href="#ref-getis2008history" role="doc-biblioref">2008</a>)</span>. Its formalization began in the mid-20th century through the efforts of many researchers, including Michael F. Dacey and others who advanced the theoretical and practical tools for spatial analysis <span class="citation" data-cites="getis2008history">Getis (<a href="#ref-getis2008history" role="doc-biblioref">2008</a>)</span>. These collective advancements have established spatial autocorrelation as a widely used technique in geography, econometrics, and beyond, with applications ranging from cluster detection to modeling spatial relationships.</p>
+<p>Several methods exist for measuring spatial autocorrelation, including Geary’s C, Moran’s I, and Getis-Ord statistics. Among these, Moran’s I is the most widely used <span class="citation" data-cites="karun2015global">M Karun, Puranik, and V S (<a href="#ref-karun2015global" role="doc-biblioref">2015</a>)</span>. A fundamental concept underpinning all spatial autocorrelation methods is the notion of <em>spatial weight</em> which quantifies neighbour relationships between regions on a map. If location i is a neighbor of location j, then <span class="math inline">\(w_{ij} \neq 0\)</span>, otherwise <span class="math inline">\(w_{ij} = 0\)</span>. Usually, a location i is not cosidered to be a neighbour of itself and hence <span class="math inline">\(w_{ij} = 0\)</span>. There are various versions of weights including:</p>
+<ol type="1">
+<li>Contiguity-Based Weights</li>
+</ol>
+<ul>
+<li><strong>Rook Contiguity</strong>: Spatial units share a common edge.</li>
+<li><strong>Queen Contiguity</strong>: Spatial units share a common edge or vertex</li>
+</ul>
+<ol start="2" type="1">
+<li>Distance-Based Weights</li>
+</ol>
+<ul>
+<li><strong>Inverse Distance Weighting (IDW)</strong>: Closer units have higher weights.</li>
+<li><strong>Fixed Distance Weighting</strong>: Units within a specified distance have a weight of 1, others have a weight of 0.</li>
+<li><strong>Nearest Neighbors (KNN)</strong>: Each unit is assigned weights based on the K closest units.</li>
+</ul>
+<p>For the purposes of this spatial study, contiguity-based (rook) weights is used. Mukims are treated as non-overlapping polygons, and the neighbour (rook) contiguity structure of the mukims is defined by the common boundary between two mukims.</p>
+</section>
+<section id="sec-study-area" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Study Area and Data</h1>
+<section id="subsec-study-area" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="subsec-study-area"><span class="header-section-number">3.1</span> Description of Study Area</h2>
+<p>Brunei Darussalam, commonly known as Brunei, is located on the northern coast of the island of Borneo in Southeast Asia. With an area of approximately 5,765 square kilometers, Brunei is bordered by the South China Sea to the north and surrounded by the Malaysian state of Sarawak. The nation’s territory is divided into two non-contiguous areas: The larger western section comprising Brunei-Muara, Tutong, and Belait districts; and the smaller eastern Temburong district. In the Northeast of the larger section lies Brunei’s capital, Bandar Seri Begawan.</p>
+<p>The districts of Brunei are subdivided into 39 smaller administrative zones known as <em>mukims</em>, each embraces a number of <em>kampongs</em> (villages). Brunei’s geography is characterized by a mix of urban centers, dense forests, and coastal lowlands. More than 70% of the nation is covered with forests, with majority locating inland, southern parts of Belait and Tutong, as well as most of Temburong <span class="citation" data-cites="WorldBank2021forest">Bank (<a href="#ref-WorldBank2021forest" role="doc-biblioref">2021</a>)</span>.</p>
+<p>pic</p>
+<p>According to the 2021 census, Brunei has a population of approximately 445,000 <span class="citation" data-cites="DEPS2022population">DEPS (<a href="#ref-DEPS2022population" role="doc-biblioref">2022</a>)</span>. The majority of the population is concentrated along the coastline, particularly in Bandar Seri Begawan, which serves as the administrative, cultural, and economic center of the nation. Brunei is a high-income country, boasting the second-highest per capita income and Human Development Index (HDI) in Southeast Asia, as well as the highest per capita Gross National Income (GNI) among OECD countries from 2005 to 2020 <span class="citation" data-cites="arifin2024pioneering">Arifin et al. (<a href="#ref-arifin2024pioneering" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Education in Brunei is both free (for citizens) and compulsory for children aged 5 to 16, leading to a high literacy rate across the population. Given the nation’s wealth and commitment to education, it would be interesting to leverage spatial analysis in finding patterns and understanding how schools are clustered and distributed across the country.</p>
+</section>
+<section id="subsec-data-collection" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="subsec-data-collection"><span class="header-section-number">3.2</span> Data Collection</h2>
+<p>The dataset comprises <span class="math inline">\(N = 252\)</span> schools in Brunei Darussalam, sourced from Ministry of Education’s <em>Brunei Darussalam Education Statistics 2018</em> <span class="citation" data-cites="moe2019education">(<a href="#ref-moe2019education" role="doc-biblioref">MOE 2019</a>)</span>. The decision to use the 2018 dataset stems from the lack of detailed data in more recent publications, which only provide summary versions. Specifically, the 2018 dataset includes:</p>
+<ol type="1">
+<li>A complete listing of all schools in Brunei by sector</li>
+<li>Categorization of pre-primary to sixth forms institutions from Ministry of Education (MOE Sector) into administrative clusters (Cluster 1–6)</li>
+<li>Student-teacher ratios and enrolment by sector and cluster</li>
+</ol>
+<p>details which are not available in the summarised editions of the statistical book from recent years.</p>
+<p>Since <span class="citation" data-cites="moe2019education">(<a href="#ref-moe2019education" role="doc-biblioref">MOE 2019</a>)</span> is only available in PDF format, we converted it to a spreadsheet format using an online converter. The data was then extracted, cleaned, and reorganized in Microsoft Excel before being imported into R using the <code>read_csv()</code> function.</p>
+<p>In order to retrieve the latitudes and longitudes of the schools, the <code>osmdata_sf()</code> function from the <em>osmdata</em> package was initially used. This approach, however, proved insufficient, as some schools were missing, and others had abbreviated names. Consequently, only partial location data was obtained. To address this, <code>left_join()</code> was used to merge the available locations with the school listing, and the remaining coordinates were manually collected.</p>
+</section>
+<section id="subsec-pda" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="subsec-pda"><span class="header-section-number">3.3</span> Preliminary Data Analysis</h2>
+<p>In the MOE sector, schools from pre-primary to sixth form are organized into Clusters 1 to 6. While the number of schools in each cluster is relatively balanced, Clusters 3 and 4 have notably higher class counts and students, followed by Clusters 1 and 2, with Clusters 5 and 6 having the lowest.</p>
+<p>In regards to student-teacher ratio, we concentrate on pre-primary through sixth-form schools, excluding vocational and higher education institutions due to their inconsistent structures and varying class arrangements. Across districts, Belait and Brunei-Muara have relatively higher student-teacher ratio (about 10) compared to Temburong and Tutong (approximately 7.6). By sector, MOE and MORA school shares similar values, whereas private schools have nearly double the student-teacher ratio, except in the Temburong district.</p>
+</section>
+</section>
+<section id="sec-methods" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Methods</h1>
+<p>This section provides detailed descriptions of the spatial autocorrelation methods used to analyse the hostpots and clusters of schools. Due to the relatively low amount of schools in Brunei (<span class="math inline">\(N = 252\)</span>), the spatial autocorrelation analysis will consider all schools as whole, instead of by sector or cluster.</p>
+<section id="subsec-GISA" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="subsec-GISA"><span class="header-section-number">4.1</span> Global spatial autocorrelation: Global Moran’s I</h2>
+<p>To examine whether schools in Brunei exhibit a clustered, dispersed, or random spatial pattern, we apply the Global Moran’s I test <span class="citation" data-cites="moran1948interpretation">(<a href="#ref-moran1948interpretation" role="doc-biblioref">Moran 1948</a>)</span> using the <code>global_moran_test()</code> function from the <code>sfdep</code> package. This test is computed for each mukim in the study area, indexed by <span class="math inline">\(i, j = 1, 2, \ldots, N\)</span>. The Moran’s I test statistic is defined as follows:</p>
+<p><span class="math display">\[
+I = \frac{N}{\sum_{i=1}^N \sum_{j=1}^N w_{ij}} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (x_i - \bar{x})(x_j - \bar{x})}{\sum_{i=1}^N (x_i - \bar{x})^2} \in [-1,1],
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span> is the value of the study variable (count of schools) in mukim <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(\bar{x}\)</span> is the mean number of schools per mukim,</li>
+<li><span class="math inline">\(w_{ij}\)</span> is the spatial weight between mukims <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</li>
+</ul>
+<p>For simplicity, rook contiguity neighbours is used for the spatial weights, as discussed in Section <a href="#sec-lit-rev">Literature Review</a>. This approach assigns <span class="math inline">\(w_{ij} = 1\)</span> if mukims <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> share one or more boundaries, and <span class="math inline">\(w_{ij} = 0\)</span> otherwise.</p>
+<p>Moran’s I values are standardized, with values close to <span class="math inline">\(+1\)</span> indicating positive spatial autocorrelation (i.e., clustering), where high or low values are near each other. Values close to <span class="math inline">\(-1\)</span> indicate negative spatial autocorrelation (i.e., dispersion), where neighboring values differ significantly. Values near <span class="math inline">\(0\)</span> suggest randomness, indicating an absence of spatial pattern. Figure <a href="#fig-autocorrelation">Autocorrelation</a> shows the three configurations of areas.</p>
+<p><embed src="images/autocorrelation.pdf" class="img-fluid" style="width:60.0%"></p>
+<p>To determine the significance of the Moran’s I statistic, we employ the Central Limit Theorem to calculate p-values based on a Z-score, allowing us to test the following hypotheses:</p>
+<ul>
+<li><span class="math inline">\(H_0: I = 0\)</span> (no spatial autocorrelation),</li>
+<li><span class="math inline">\(H_1: I \neq 0\)</span> (presence of spatial autocorrelation).</li>
+</ul>
+</section>
+<section id="subsec-LISA" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="subsec-LISA"><span class="header-section-number">4.2</span> Local spatial autocorrelation (LISA): Local Getis-Ord</h2>
+<p>While a visual inspection suggests that certain kampongs may have a higher concentration of schools, we aim to quantify this pattern. Whereas global spatial autocorrelation tests confirm whether clustering exists, we use the Getis-Ord <span class="math inline">\(G_i^*\)</span> statistic <span class="citation" data-cites="getis1992analysis">(<a href="#ref-getis1992analysis" role="doc-biblioref">Getis and Ord 1992</a>)</span> to identify the specific areas where schools are concentrated. This statistic is computed using the <code>hotspot_gistar</code> function from the <code>sfhotspot</code> package.</p>
+<p>In our analysis, the study area is subdivided into <span class="math inline">\(n\)</span> square grids, indexed by <span class="math inline">\(i=1, 2, \ldots, n\)</span>. By default, the <code>hotspot_gistar</code> function automatically sets the grid size to be 3,400 square meters. For each grid cell <span class="math inline">\(i\)</span>, the <span class="math inline">\(G_i^*\)</span> statistic is calculated as:</p>
+<p><span class="math display">\[
+G_i^* = \frac{\sum_j w_{ij} x_j}{\sum_j x_j}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x_j\)</span> is the value of the study variable (the count of schools) for grid cell <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(w_{ij}\)</span> is the spatial weight between grid cells <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</li>
+</ul>
+<p>Similar to global spatial autocorrelation in Section <a href="#subsec-gisa">Spatial Patterns</a>, the spatial weights used are based on rook contiguity neighbours. However, there is one slight modification: the spatial weights <span class="math inline">\(w_{ii}\)</span> are set to 1 rather than 0. This adjustment gives <span class="math inline">\(G_i^*\)</span> a more localized perspective, which is valuable for identifying clusters centered directly on a point of interest rather than merely in its surrounding areas.</p>
+<p>A statistically significant high <span class="math inline">\(G_i^*\)</span> value indicates a “hotspot” or a cluster of high values, whereas a low <span class="math inline">\(G_i^*\)</span> value suggests a “coldspot” or a cluster of low values.</p>
+<p>To highlight only significant hotspot clusters, the output was filtered to include only values with <strong>(G_i^* &gt; 0)</strong> and <strong>p-value &lt; 0.05</strong>. The output dataset is then cropped to Brunei’s boundary using <code>st_intersection</code> to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly.</p>
+</section>
+</section>
+<section id="sec-results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
+<p>The results section is organized into three parts, each corresponding to one of the topic questions introduced in Section <a href="#sec-intro" class="quarto-xref">Section&nbsp;1</a>.</p>
+<section id="are-the-schools-clustered" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="are-the-schools-clustered"><span class="header-section-number">5.1</span> Are the schools clustered?</h2>
+<p>The Global Moran’s I analysis yielded an I value of <strong>0.457</strong>. The positive Moran’s I statistic suggests a positive autocorrelation in the count of schools across mukims. Given the statistically significant results (low p-value of <strong>(4.542 ^{-6} &lt; 0.001)</strong>), there is sufficient evidence to reject the null hypothesis <span class="math inline">\(H_0\)</span>, which assumes no spatial autocorrelation in the distribution of schools.</p>
+<p>This finding supports the presence of a moderate to strong clustering tendency, implying that mukims with a similar number of schools, whether high or low, are geographically close to each other. The results of the Global Moran’s I test align with our preliminary observation in Section <a href="#subsec-prelim-data-analysis">Preliminary Data Analysis</a>, that there exist school clusters. In the following subsection, we will further verify that these clusters are more concentrated near the coastal regions through local spatial autocorrelation.</p>
+</section>
+<section id="locations-of-school-clusters" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="locations-of-school-clusters"><span class="header-section-number">5.2</span> Locations of School Clusters</h2>
+<p>As highlighted in Figure, <strong>Brunei-Muara</strong>, the capital district of Brunei. This is unsurprising given its status as the nation’s capital, urban, and administrative center. Other notable clusters outside the capital are located in:</p>
+<ul>
+<li>Temburong District: <strong>Mukim Bangar</strong></li>
+<li>Tutong District: <strong>Mukim Pekan Tutong</strong>, <strong>Mukim Telisai</strong></li>
+<li>Kuala Belait District: <strong>Mukim Kuala Belait</strong>, <strong>Mukim Seria</strong></li>
+</ul>
+<p>This result confirms that school clusters do indeed concentrate near the coastal regions. Furthermore, schools appear to be less abundant or accessible in the outskirts and areas outside the capital district, Brunei-Muara.</p>
+<p>Another insight of the Getis-Ord analysis is its ability to pinpoint specific areas of clustering within each mukim, offering an advantage over the choropleth map in Figure . For example, schools cluster in the northeastern areas of Mukim Telisai but are more concentrated toward the south in Mukim Bangar (refer Figure ). This level of detail enables a more precise understanding of spatial clustering patterns.</p>
+</section>
+<section id="comparison-to-distribution-of-population" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="comparison-to-distribution-of-population"><span class="header-section-number">5.3</span> Comparison to Distribution of Population</h2>
+<p>While visual inspection of Figure and Figure suggests a general alignment between schools and population hotspots, a more detailed comparison reveals some notable patterns. For example, when we examine the top 10 kampongs by school count and by population in Table only three kampongs, namely <strong>Kg. Mata-Mata</strong>, <strong>Kg. Panaga</strong>, and <strong>Kg. Sungai Akar</strong>, are shared across both lists.</p>
+<p>At the mukim level, the overlap is more prominent, with six mukims appearing in both top 10 lists for school count and population. This indicates that, while schools are generally located in highly populated mukims, they may not always be centered within the kampongs with the highest populations. Instead, the schools may be distributed across several kampongs within a populous mukim, possibly for reasons such as accessibility, land availability, or local demand variations.</p>
+</section>
+</section>
+<section id="sec-conclusions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusions</h1>
+</section>
+<section id="acknowledgements" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Acknowledgements</h1>
+<p>The author expresses gratitude to Prof.&nbsp;Haziq Jamil for his invaluable insights which enriched this study, and Aniq Najwa, Danish Ikhwan and Rayme Hijazi for assistance in data collection.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abdul2021development" class="csl-entry" role="listitem">
+Abdul Latif, Siti Norhedayah, Rohani Matzin, and Aurelia Escoto-Kemp. 2021. <span>“The Development and Growth of Inclusive Education in Brunei Darussalam.”</span> <em>Globalisation, Education, and Reform in Brunei Darussalam</em>, 151–75. https://doi.org/<a href="https://doi.org/10.1007/978-3-030-77119-5_8">https://doi.org/10.1007/978-3-030-77119-5_8</a>.
+</div>
+<div id="ref-arifin2024pioneering" class="csl-entry" role="listitem">
+Arifin, Evi Nurvidya, Aris Ananta, Siti Fatimahwati Pehin Dato Musa, and Chang-Yau Hoon. 2024. <span>“A Pioneering Study on Measuring Poverty in the Hydrocarbon-Rich State of Brunei Darussalam.”</span> <em>Asian Population Studies</em> 20 (2): 222–40. https://doi.org/<a href="https://doi.org/10.1080/17441730.2023.2240108">https://doi.org/10.1080/17441730.2023.2240108</a>.
+</div>
+<div id="ref-WorldBank2021forest" class="csl-entry" role="listitem">
+Bank, World. 2021. <span>“World Development Indicators: Forest Area (% of Land Area).”</span> <a href="https://databank.worldbank.org/source/world-development-indicators/Series/AG.LND.FRST.ZS">https://databank.worldbank.org/source/world-development-indicators/Series/AG.LND.FRST.ZS</a>.
+</div>
+<div id="ref-GovernmentBruneiNDwawasan" class="csl-entry" role="listitem">
+Brunei Darussalam, Government of. 2020. <span>“Brunei Darussalam Long-Term Development Plan. Wawasan Brunei 2035.”</span>
+</div>
+<div id="ref-DEPS2022population" class="csl-entry" role="listitem">
+DEPS. 2022. <em>The Population and Housing Census Report (BPP) 2021: Demographic, Household and Housing Characteristics</em>. Department of Economic Planning; Statistics, Ministry of Finance; Economy, Brunei Darussalam.
+</div>
+<div id="ref-ebil2023overview" class="csl-entry" role="listitem">
+Ebil, Syazana, and Masitah Shahrill. 2023. <span>“Overview of Education in Brunei Darussalam.”</span> In <em>International Handbook on Education in South East Asia</em>, 1–21. Springer. https://doi.org/<a href="https://doi.org/10.1007/978-981-16-8136-3_46-1">https://doi.org/10.1007/978-981-16-8136-3_46-1</a>.
+</div>
+<div id="ref-getis2008history" class="csl-entry" role="listitem">
+Getis, Arthur. 2008. <span>“A History of the Concept of Spatial Autocorrelation: A Geographer’s Perspective.”</span> <em>Geographical Analysis</em> 40 (3): 297–309.
+</div>
+<div id="ref-getis1992analysis" class="csl-entry" role="listitem">
+Getis, Arthur, and J Keith Ord. 1992. <span>“The Analysis of Spatial Association by Use of Distance Statistics.”</span> <em>Geographical Analysis</em> 24 (3): 189–206. https://doi.org/<a href="https://doi.org/10.1111/j.1538-4632.1992.tb00261.x">https://doi.org/10.1111/j.1538-4632.1992.tb00261.x</a>.
+</div>
+<div id="ref-karun2015global" class="csl-entry" role="listitem">
+M Karun, Kalesh, Amitha Puranik, and Binu V S. 2015. <span>“Easy Way to Understand the Global Measures of Spatial Autocorrelations.”</span> <em>Research Journal of Mathematical and Statistical Sciences</em> 3 (6): 1–4.
+</div>
+<div id="ref-moe2019education" class="csl-entry" role="listitem">
+MOE. 2019. <em>Brunei Darussalam Education Statistics 2018</em>. Department of Planning, Development; Research, Ministry of Education, Brunei Darussalam.
+</div>
+<div id="ref-mohamad2018towards" class="csl-entry" role="listitem">
+Mohamad, Hanapi, Rosyati M Yaakub, Emma Claire Pearson, and Jennifer Tan Poh Sim. 2018. <span>“Towards Wawasan Brunei 2035: Early Childhood Education and Development in Brunei Darussalam.”</span> <em>International Handbook of Early Childhood Education</em>, 551–67. https://doi.org/<a href="https://doi.org/10.1007/978-94-024-0927-7_25">https://doi.org/10.1007/978-94-024-0927-7_25</a>.
+</div>
+<div id="ref-moran1948interpretation" class="csl-entry" role="listitem">
+Moran, Patrick AP. 1948. <span>“The Interpretation of Statistical Maps.”</span> <em>Journal of the Royal Statistical Society. Series B (Methodological)</em> 10 (2): 243–51. <a href="https://www.jstor.org/stable/2983777">https://www.jstor.org/stable/2983777</a>.
+</div>
+<div id="ref-salbrina2024education" class="csl-entry" role="listitem">
+Salbrina, Sharbawi, David Deterding, and Mohamad Nur Raihan. 2024. <span>“Education in Brunei.”</span> In <em>Brunei English: A New Variety in a Multilingual Society</em>, 17–32. Springer. https://doi.org/<a href="https://doi.org/10.1007/978-3-031-60303-7_2">https://doi.org/10.1007/978-3-031-60303-7_2</a>.
+</div>
+<div id="ref-tobler1970computer" class="csl-entry" role="listitem">
+Tobler, Waldo R. 1970. <span>“A Computer Movie Simulating Urban Growth in the Detroit Region.”</span> <em>Economic Geography</em> 46 (sup1): 234–40. https://doi.org/<a href="https://doi.org/10.2307/143141">https://doi.org/10.2307/143141</a>.
+</div>
+<div id="ref-UNGA2015transform" class="csl-entry" role="listitem">
+(UNGA), United Nations General Assembly. 2015. <span>“Transforming Our World: The 2030 Agenda for Sustainable Development.”</span> <a href="https://sustainabledevelopment.un.org/post2015/transformingourworld">https://sustainabledevelopment.un.org/post2015/transformingourworld</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
