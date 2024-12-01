@@ -1,12 +1,12 @@
 {
-    "id": "9F0237A6",
-    "path": "D:/github/quartotest/docs/docs.qmd",
+    "id": "DD0A2BC8",
+    "path": "D:/github/quartotest/docs.qmd",
     "project_path": "docs.qmd",
     "type": "quarto_markdown",
     "hash": "2388712058",
     "contents": "",
-    "dirty": true,
-    "created": 1733022344983.0,
+    "dirty": false,
+    "created": 1733022557179.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
@@ -16,16 +16,14 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "45:0",
-        "cursorPosition": "0,0",
-        "scrollLine": "0"
+        "rmdVisualModeLocation": "49:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1733022342,
+    "lastKnownWriteTime": 1733022392,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1733022368435,
+    "last_content_update": 1733022392,
     "read_only": false,
     "read_only_alternatives": []
 }

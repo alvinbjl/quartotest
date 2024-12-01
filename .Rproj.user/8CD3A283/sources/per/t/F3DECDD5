@@ -1,12 +1,12 @@
 {
-    "id": "61D0DA85",
-    "path": "D:/github/quartotest/docs/_quarto.yml",
+    "id": "F3DECDD5",
+    "path": "D:/github/quartotest/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "0",
+    "hash": "2892682398",
     "contents": "",
     "dirty": false,
-    "created": 1733022367760.0,
+    "created": 1733022561192.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
@@ -20,7 +20,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1733022376308,
+    "last_content_update": 1733022376,
     "read_only": false,
     "read_only_alternatives": []
 }
