@@ -256,9 +256,9 @@ The results section is organized into three parts, each corresponding to one of 
 The Global Moran's I analysis yielded an I value of **0.457**. The positive Moran’s I statistic suggests a positive autocorrelation in the count of schools across mukims. Given the statistically significant results (low p-value of $\mathbf{4.54 \times 10^{-6} < 0.001)}$), there is sufficient evidence to reject the null hypothesis $H_0$, which assumes no spatial autocorrelation in the distribution of schools.
 
 ```{r include = FALSE}
-# nb <- st_contiguity(mkm_sch)
-# wt <- st_weights(nb)
-# global_moran_test(mkm_sch$count_of_schools, nb, wt)
+nb <- st_contiguity(mkm_sch)
+wt <- st_weights(nb)
+global_moran_test(mkm_sch$count_of_schools, nb, wt)
 ```
 
 This finding supports the presence of a moderate to strong clustering tendency, implying that mukims with a similar number of schools, whether high or low, are geographically close to each other.The results of the Global Moran’s I test align with our visual observation as observed in figure below.
@@ -342,6 +342,7 @@ Table: Top 10 Kampongs by School Count and Population
 | 9 | Kg. Tungku                | 5                 | **Kg. Sungai Akar**       | **6,129**      |
 |10 | Kg. Kiulap                | 4                 | Kg. Mulaut                | 5,981          |
 
+<br>
 Table: 10 Mukims by School Count and Population
 
 | | **Mukim**                  | **Schools Count** | **Mukim**                  | **Population** |
